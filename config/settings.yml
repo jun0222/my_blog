@@ -1,0 +1,15 @@
+defaults: &defaults
+  text: 
+    posting_function:
+      title_form: "タイトル"
+      content_form: "本文"
+    blog_title: "俺のブログ"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
