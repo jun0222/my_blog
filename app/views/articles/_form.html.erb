@@ -12,8 +12,10 @@
   <% end %>
 
   <div class="actions">
-    <%= form.text_field :title %>
-    <%= form.text_field :content %>
+    <p><%= Settings.text.posting_function.title_form %></p>
+    <p><%= form.text_field :title, size: "130" %></p>
+    <p><%= Settings.text.posting_function.content_form %></p>
+    <p><%= form.text_area :content, size: "130x25" %></p>
     <%= form.submit %>
   </div>
 <% end %>
