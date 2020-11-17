@@ -17,14 +17,22 @@
           <p class="index__content--datetime col-sm-3 text-right"><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></p>
         </div>
         <div class="row border mb-4">
-          <div class="col-sm-10 border"><%= simple_format(article.content) %></div>
-          <div class="col-sm-1 border"><%= link_to '編集', edit_article_path(article) %></div>
-          <div class="col-sm-1 border"><%= link_to '削除', article, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+          <% if user_signed_in? %>
+            <div class="col-sm-10 border"><%= simple_format(article.content) %></div>
+            <div class="col-sm-1 border"><%= link_to '編集', edit_article_path(article) %></div>
+            <div class="col-sm-1 border"><%= link_to '削除', article, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+          <% else %>
+            <div class="col-sm-12 border"><%= simple_format(article.content) %></div>
+          <% end %>
         </div>
       <% end %>
     </tbody>
   </table>
 
   <br>
-  <p><%= link_to '新規投稿', new_article_path %></p>
+  <% if user_signed_in? %>
+    <p><%= link_to '新規投稿', new_article_path %> | <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></p>
+  <% else %>
+    <p><%= link_to '管理者ログイン', new_user_session_path %></p>
+  <% end %>
 </div>
